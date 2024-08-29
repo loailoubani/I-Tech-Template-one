@@ -1,0 +1,525 @@
+  * {
+    box-sizing: border-box;
+  }
+  :root {
+    --main-color: #86b6f6 ;
+    --section-background: #eef5ee;
+    --secondary-color: #176B87;
+    --section-padding: 60px;
+    --color-p:#777;
+  }
+  /* سكرول عن نزول لقسم من الايقون */
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: "Work Sans", sans-serif;
+  }
+  /* بادنج على شان الكلام ما يبلش من اول الصفحة بالموبايل  */
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* Small */
+  @media (min-width: 768px) {
+    .container {
+      width: 750px;
+    }
+  }
+  /* Medium */
+  @media (min-width: 992px) {
+    .container {
+      width: 970px;
+    }
+  }
+  /* Large */
+  @media (min-width: 1200px) {
+    .container {
+      width: 1170px;
+    }
+  }
+
+  /* components */
+  /* عناصر نعمل بها كثيرا */
+  .special-heading {
+    color: #dbdbdb;
+    font-size: 100px;
+    text-align: center;
+    font-weight: 800;
+    letter-spacing: -3px;
+    margin: 0;
+  }
+  .special-heading + p {
+    margin: -30px 0 0;
+    font-size: 20px;
+    text-align: center;
+    color: #797979;
+  }
+  @media (max-width: 767px) {
+    .special-heading {
+      font-size: 60px;
+    }
+    .special-heading + p {
+      margin-top: -20px;
+    }
+  }
+
+    /* Header */
+    .header {
+        padding: 20px;
+        background-color: var(--section-background);
+    }
+    /* توزيع العناصر في الهيدر */
+    .header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    /* حجم اللوغو */
+    .header .logo {
+        width: 35px;
+    }
+    .header .links {
+        position: relative;
+    }
+    /* خصائص عنصر الايقون */
+    .header .links .icon {
+      width: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    /* خصائص عناصر السبان */
+    .header .links .icon span {
+      height: 2px;
+      background-color: var(--main-color);
+      margin-bottom: 5px;
+    }
+    /* استهداف العنصر الأول من السبان */
+    .header .links .icon span:first-child {
+      width: 100%;
+    }
+    /* استهداف العنصر الثاني من السبان */
+    .header .links .icon span:nth-child(2) {
+      width: 60%;
+      /* مدة الترانسيشن */
+      transition: 0.3s;
+    }
+    /* استهداف العنصر الثالث من السبان */
+    .header .links .icon span:last-child {
+      width: 100%;
+    }
+    /* ترانسيشن  للعنصر الثاني */
+    .header .links:hover .icon span:nth-child(2) {
+      width: 100%;
+    }
+    .header .links ul  {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      background-color: #f6f6f6;
+      min-width: 200px;
+      position: absolute;
+      /* يمين صفر لحتى يبدأ من اول الايقون */
+      right: 0;
+      /* الاعلى ضفنا عليه 15 منشان نبعدة عن الايقون شوي */
+      top: calc(100% + 15px);
+      /* منشان نخفي العنصر */
+      display: none;
+      z-index: 1;
+    }
+    .header .links ul li a {
+      /* جعلناه عنصر بلوك لانه انلاين */
+      display: block;
+      padding: 15px;
+      /* اذالة الخط تحت اللينك */
+      text-decoration: none;
+      color: #333;
+      /* ترانسيشن لتحريك اللينك إلى اليسار */
+      transition: 0.3s;
+    }
+    .header .links ul li:not(:last-child) a {
+      border-bottom: 1px solid #ddd ;
+    }
+    /* انشاء السهم */
+    .header .links ul::before {
+      content: "";
+      position: absolute;
+      border-style: solid;
+      border-width: 10px;
+      border-color: transparent transparent #f6f6f6 transparent;
+      top: -20px;
+      right: 5px;
+    }
+    /* عند الضغط على اللينك او الايقون تظهر القائمة  */
+    .header .links:hover ul  {
+      display: block;
+    }
+    /* عند توجيه ذر الماوس على اللينك يتحرك قليلا إلى اليسار له ترانسيشن */
+    .header .links ul li a:hover {
+      padding-left: 20px;
+    }
+
+    /* Landing */
+    .landing {
+      background-image: url(../images/landing.jpg);
+      background-size: cover;
+      /*  لملئ لاندنغ على الشاشة بطول ننقص مساحة الهدر
+       ولكن لا يملئ بالكامل بسبب وجود مارجن لعنصر اتش ون */
+      height: calc(100vh - 64px);
+      /* توسيط النص في وسط الاب تبعه
+       لو ما بدنا لا نضيفها ويتوسط في نصف الشاشة */
+      position: relative;
+      perspective: 300px;
+    }
+    .landing .intro-text {
+      /* توسيط النص في نصف الشاشة نعمل عنصر مطلق */
+      position: absolute;
+      /* توسيط في نصف الشاشة */
+      left: 50%;
+      top: 50%;
+      transform: translate(-50% , -50%);
+      text-align: center;
+      /* منشان مساحة على الموبايل بتصير مضغوطة وهيك بكون حددت المساحة */
+      width: 320px;
+      /* على شان ما تخرج من المحتوى برا الشاشة */
+      max-width: 100%;
+    }
+    .landing .intro-text h1 {
+      /* صفر لحتى يروح السكرول تبع لاندنغ */
+      margin: 0;
+      font-weight: bold;
+      font-size: 50px;
+      color: var(--main-color);
+    }
+    .landing .intro-text p {
+      color:var(--color-p);
+      font-size: 19px;
+      line-height: 1.8;
+    }
+
+    /* Features  */
+    .features {
+      padding-top: 60px;
+      padding-bottom: 60px;
+      background-color: var(--section-background);
+    }
+    .features .container {
+      display: grid;
+      /* اوتو فل ملئ الاعمدة بناء على المساحة المتوفرة  */
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-gap: 20px;
+    }
+    .features .feat {
+      padding: 20px;
+      text-align: center;
+    }
+    .features .feat i {
+      color: var(--main-color);
+    }
+    .features .feat h3 {
+      /* 800 وتعني اكسترا بولد وتختلف عن بولد */
+      font-weight: 800;
+      margin: 30px 0;
+    }
+    .features .feat p {
+      line-height: 1.8;
+      color: var(--color-p);
+      font-size: 17px;
+    }
+
+    /* Services */
+    .services {
+      padding-top: var(--section-padding);
+      padding-bottom: var(--section-padding);
+    }
+    .services .services-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-gap: 30px;
+      margin-top: 100px;
+    }
+    .services .services-content .srv {
+      display: flex;
+      margin-bottom: 40px;
+    }
+    /* للموبايل رتب عاموديا و وسط االكلام */
+    @media (max-width: 767px) {
+      .services .services-content .srv {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    .services .services-content .srv i {
+      color: var(--main-color);
+      /* منشان لو صغرنا على شاشة الموبايل يعتبر انو هي الطول و العرض تبعنا */
+      flex-basis: 60px;
+    }
+    /* عشان ياخذ كامل المساحة ويترك الباقي 60 بكسل للايقون */
+    .services .services-content .srv .text {
+      flex: 1;
+    }
+    /* لغيناالمارجن يلي فوق منشان يوازي الايقون */
+    .services .services-content .srv .text h3 {
+      margin: 0 0 20px;
+    }
+    .services .services-content .srv .text p {
+      color: var(--color-p);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    .services .services-content .image {
+      text-align: center;
+      /* مشان العناصر يلي رح اعملها للبيفور وافتر ما تطلع من الاب */
+      position: relative;
+    }
+
+    .services .services-content .image::before {
+      content: "";
+      background-color: var(--secondary-color);
+      width: 150px;
+      /* طول زدنا عليه ليخرج من الصورة */
+      height: calc(100% + 100px);
+      /* الزيادة بطول فوق 50 وتحت 50 */
+      top: -50px;
+      position: absolute;
+      /* يبدأ من اليمين  */
+      right: 0;
+      z-index: -1;
+    }
+    .services .services-content .image img {
+      width: 180px;
+      transition: transform 5s;
+      animation-name: moveimage;
+      animation-duration: 3s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+
+    }
+    @keyframes moveimage {
+      0% {
+        transform: translateY(-50px);
+      }
+      50% {
+        transform: translateY(50px);
+      }
+      100% {
+        transform: translateY( -50px) ;
+      }
+      }
+    /* بس يقل عن القياس هذا تختفي الصورة */
+    @media (max-width: 1199px) {
+      .image-column {
+        display: none;
+      }
+    }
+    
+    /* Portfolio */
+    .portfolio {
+      padding-top: var(--section-padding);
+      padding-bottom: var(--section-padding);
+      background-color: var(--section-background);
+    }
+    .portfolio .portfolio-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-gap: 30px;
+      /* مسافة بين كلمة و المحتوى السفلي */
+      margin-top: 80px;
+    }
+    .portfolio .portfolio-content .card {
+      background-color: white;
+      border-radius: 8px;
+      border: 3px solid var(--main-color);
+      transition-duration: .5s;
+    }
+    .portfolio .portfolio-content .card:hover {
+      transform: translate(0 , -20px);
+    }
+    /* منشان ما تطلع برا المحنوى ويحب ان يكونو الصور نفس القياس */
+    .portfolio .portfolio-content .card img {
+      border-radius: 8px;
+      max-width: 70%;
+      margin: 20px 15% 0;
+      
+    }
+    .portfolio .portfolio-content .card .info {
+      padding: 20px;
+      margin: 0 35px;
+    }
+    /* شلنا امارجن منها منشان البادنج هو رح يتحكم بالهامش يبدأ من وين يعني*/
+    .portfolio .portfolio-content .card .info h3 {
+      margin: 0;
+    }
+    .portfolio .portfolio-content .card .info p {
+      color: var(--color-p);
+      line-height: 1.6;
+      /*   لانو في مارجن وعلى شان المسافة تحت ما تصير اكبر من فوق  */
+      margin-bottom: 0;
+    }
+    .button {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 20px;
+    }
+    .button button {
+      background-color: white;
+      padding: 4px 12px; 
+      border: 3px solid var(--main-color);
+      border-radius: 8px ;
+      cursor: pointer;
+    }
+    .button button:hover {
+      transform: scale(1.1 , 1.1);
+    }
+    /* About */
+    .about {
+      padding-top: var(--section-padding);
+      /* في رسمة منشان نحسن من الشكل ضفنا 60 بكسل */
+      padding-bottom: calc(var(--section-padding) + 60px);
+    }
+    .about .about-content {
+      margin-top: 100px;
+      display: flex;
+      /* لو المحتوى زاد مساحتو رج ينزل لتحت */
+      flex-wrap: wrap;
+      /* مسافات بين الصورة و نص */
+      justify-content: space-between;
+    }
+    /* بس يوصل لهاد الحجم عملن عامود ووسط الكلام */
+      @media (max-width: 991px) {
+      .about .about-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    .about .about-content .image {
+      /* عناصر يلي رح نرسمها جوا معتمدة على الاب هاد */
+      position: relative;
+      /* مساحة الصورة منشان الصورة تكون على قد الديف وما تطلع منه*/
+      width: 250px;
+      height: 375px;
+    }
+    /* وسط الصورة */
+    @media (max-width: 991px) {
+      .about .about-content .image {
+        margin: 0 auto 60px;
+      }
+    }
+    /* عملنا الصورة على قد دفها لتصغير الحجم*/
+    .about .about-content .image img {
+      max-width: 100%;
+    }
+    .about .about-content .image::before {
+      content: "";
+      position: absolute;
+      background-color: #ebeced;
+      width: 100px;
+      height: calc(100% + 80px); 
+      /* فوق 40 وتحت 40 */
+      top: -40px;
+      /* طالع لبرا شوي */
+      left: -20px;
+      z-index: -1;
+    }
+    /* يوجد عدة طرق واستخدمنا البوردر */
+    .about .about-content .image::after {
+      top: -40px;
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 300px;
+      border-left: 80px solid var(--main-color);
+      border-bottom: 80px solid var(--main-color);
+      z-index: -1;
+      right: -150px;
+    } 
+    /* اخفاء الرسمة */
+    @media (max-width: 991px) {
+      .about .about-content .image::before,
+      .about .about-content .image::after {
+        display: none;
+      }
+    }
+    /* يوجد عدة طرق مثل 
+    flex: 1;
+    padding: 200px; */
+    .about .about-content .text {
+      flex-basis: calc(100% - 500px);
+    }
+    .about .about-content .text p:first-of-type {
+      font-weight: bold;
+      line-height: 2;
+      margin-bottom: 50px;
+    }
+    .about .about-content .text hr {
+      width: 50%;
+      /* ليبدأ من الأول */
+      display: inline-block;
+      border-color: var(--main-color);
+    }
+    .about .about-content .text p:last-of-type {
+      line-height: 2;
+      color: #777;
+    }
+    /* Start Contact */
+.contact {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  background-color: var(--section-background);
+}
+.contact .info {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  text-align: center;
+}
+.contact .info .label {
+  font-size: 35px;
+  font-weight: 800;
+  color: var(--secondary-color);
+  letter-spacing: -2px;
+  margin-bottom: 15px;
+}
+.contact .info .link {
+  /* عشان يعمل ريسبكت للعناصر */
+  display: block;
+  font-size: 35px;
+  font-weight: 800;
+  color: var(--main-color);
+  text-decoration: none;
+}
+.contact .info .social {
+  /* منشان لما دوس على الايقون ينقلني عليها */
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 16px;
+}
+.contact .info .social i {
+  /* مسافة بين الايقون */
+  margin-left: 10px;
+  color: var(--secondary-color);
+  /* للموبايل */
+}
+@media (max-width: 767px) {
+  .contact .info .label,
+  .contact .info .link {
+    font-size: 25px;
+  }
+}
+/* End Contact */
+/* Start Footer */
+.footer {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 30px 10px;
+  text-align: center;
+  font-size: 18px;
+}
+.footer span {
+  font-weight: bold;
+  color: var(--main-color);
+}
+/* End Footer */
